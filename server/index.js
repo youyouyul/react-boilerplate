@@ -4,6 +4,7 @@ const port = 5000;
 
 const config = require('./config/key');
 const bodyParser = require('body-Parser');
+// 요청된 쿠키 쉽게 추출할 수 있도록 도와주는 미들웨어
 const cookieParser = require('cookie-parser');
 
 const { auth } = require('./middleware/auth');
@@ -28,6 +29,7 @@ mongoose.connect(config.mongoURI, {
 
 app.get('/', (req, res) => res.send('Hello World! 안녕하세요'));
 
+// 회원 가입
 app.post('/api/users/register', (req, res) => {
     //회원가입 할때 필요한 정보들을 client에서 가져오면
     //그것들을 DB에 넣어준다.
@@ -41,6 +43,7 @@ app.post('/api/users/register', (req, res) => {
     });
 })
 
+// 로그인
 app.post('/api/users/login', (req, res) => {
     //요청된 이메일을 DB에서 찾는다
     User.findOne({ email: req.body.email }, (err, user) => {
@@ -73,6 +76,7 @@ app.post('/api/users/login', (req, res) => {
     })
 })
 
+// 인증 처리
 app.get('/api/users/auth', auth, (req, res) => {
     // 여기까지 미들웨어를 통과해 왔다는 얘기는 Authentication에 True라는 것
     res.status(200).json({
@@ -87,6 +91,7 @@ app.get('/api/users/auth', auth, (req, res) => {
     });
 })
 
+// 로그아웃
 app.get('/api/users/logout', auth, (req, res) => {
     User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
         if(err) return res.json({ success: false, err});
