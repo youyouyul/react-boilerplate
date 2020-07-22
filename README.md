@@ -9,7 +9,7 @@
         > Node, Express, MongoDB, bcrypt, nodemon, cookie-parser, JWT
 
     - Client
-       > React, React-Router-Dom, Redux, Axios, Proxy, antd
+       > React, React-Router-Dom, Redux, Axios, Proxy, antd, formik, yup
 
 <br>
 

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import promiseMiddleware from 'redux-promise';
@@ -20,7 +21,9 @@ ReactDOM.render(
             window.__REDUX_DEVTOOLS_EXTENSION__()
         ) }
     >
-        <App />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </Provider>
     , document.getElementById('root'));
 
