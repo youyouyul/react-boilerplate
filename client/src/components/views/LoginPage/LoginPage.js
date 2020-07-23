@@ -2,9 +2,15 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../../../_actions/user_action';
 import { withRouter } from 'react-router-dom';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { From, Input, Button, Checkbox, Typography } from 'antd';
+
+//const { Title } = Typography;
 
 function LoginPage(props) {
     const dispatch = useDispatch();
+    //const rememberMeChecked = localStorage.getItem("rememberMe") ? true : false;
 
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
